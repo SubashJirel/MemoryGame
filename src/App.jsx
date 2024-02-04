@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import uniqid from 'uniqid';
 import Card from './components/Card';
@@ -14,6 +14,9 @@ const weatherImages = [
 function App() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
+  const [choiceOne, setChoiceOne] = useState(null);
+  const [choiceTwo, setChoiceTwo] = useState(null);
+
   function shuffleCards() {
     const twelveImagesArray = [...weatherImages, ...weatherImages]
       .sort(() => Math.random() - 0.5)
@@ -21,14 +24,37 @@ function App() {
     setCards(twelveImagesArray);
     setTurns(0);
   }
-  console.log(cards, turns);
+  function handleChoice(card) {
+    choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
+  }
+
+  //compare two selected cards
+  useEffect(() => {
+    if (choiceOne && choiceTwo) {
+      console.log('use effect is run');
+      if (choiceOne.src == choiceTwo.src) {
+        console.log('two cards match');
+        resetTurn();
+      } else {
+        console.log('No match');
+        resetTurn();
+      }
+    }
+  }, [choiceOne, choiceTwo]);
+
+  //reset choices and increase turn
+  function resetTurn() {
+    setChoiceOne(null);
+    setChoiceTwo(null);
+    setTurns((prev) => prev + 1);
+  }
   return (
     <>
       <h1>Memory game</h1>
       <button onClick={shuffleCards}>New Game</button>
       <div className="card-grid">
         {cards.map((card) => (
-          <Card card={card} key={card.id} />
+          <Card card={card} key={card.id} handleChoice={handleChoice} />
         ))}
       </div>
     </>
