@@ -1,4 +1,4 @@
-# React CV Builder
+# Memory game using react
 
 A simple Memory game using react.
 
