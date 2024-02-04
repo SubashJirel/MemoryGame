@@ -66,3 +66,9 @@ button:hover {
   transform: rotateY(90deg);
   transition-delay: 0s;
 }
+
+.numOfTurns {
+  position: absolute;
+  right: 180px;
+  top: 80px;
+}

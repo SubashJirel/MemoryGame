@@ -22,6 +22,8 @@ function App() {
     const twelveImagesArray = [...weatherImages, ...weatherImages]
       .sort(() => Math.random() - 0.5)
       .map((val) => ({ ...val, id: uniqid() }));
+    setChoiceOne(null);
+    setChoiceTwo(null);
     setCards(twelveImagesArray);
     setTurns(0);
   }
@@ -53,7 +55,11 @@ function App() {
     }
   }, [choiceOne, choiceTwo]);
 
-  console.log(cards);
+  //start a new game automatically
+  useEffect(() => {
+    shuffleCards();
+  }, []);
+
   //reset choices and increase turn
   function resetTurn() {
     setChoiceOne(null);
@@ -64,6 +70,7 @@ function App() {
   return (
     <>
       <h1>Memory game</h1>
+      <p className="numOfTurns"> Number of turns {turns}</p>
       <button onClick={shuffleCards}>New Game</button>
       <div className="card-grid">
         {cards.map((card) => (
