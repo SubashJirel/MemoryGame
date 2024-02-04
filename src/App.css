@@ -16,3 +16,21 @@ button:hover {
   background: #c23866;
   color: #fff;
 }
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+
+  margin-top: 30px;
+}
+.card {
+  position: relative;
+}
+.card img {
+  height: 100px;
+  width: 100px;
+  display: block;
+  border: 2px solid whitesmoke;
+  border-radius: 6px;
+  padding: 6px;
+}
