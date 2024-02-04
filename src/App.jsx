@@ -3,12 +3,12 @@ import './App.css';
 import uniqid from 'uniqid';
 import Card from './components/Card';
 const weatherImages = [
-  { src: '/img/clear.png' },
-  { src: '/img/clouds.png' },
-  { src: '/img/drizzle.png' },
-  { src: '/img/mist.png' },
-  { src: '/img/rain.png' },
-  { src: '/img/snow.png' },
+  { src: '/img/clear.png', matched: false },
+  { src: '/img/clouds.png', matched: false },
+  { src: '/img/drizzle.png', matched: false },
+  { src: '/img/mist.png', matched: false },
+  { src: '/img/rain.png', matched: false },
+  { src: '/img/snow.png', matched: false },
 ];
 
 function App() {
@@ -34,6 +34,17 @@ function App() {
       console.log('use effect is run');
       if (choiceOne.src == choiceTwo.src) {
         console.log('two cards match');
+        setCards((prev) => {
+          return prev.map((card) => {
+            if (card.src == choiceOne.src) {
+              // choiceone or choiceTwo same thing
+              return { ...card, matched: true };
+            } else {
+              return card;
+            }
+          });
+        });
+
         resetTurn();
       } else {
         console.log('No match');
@@ -42,6 +53,7 @@ function App() {
     }
   }, [choiceOne, choiceTwo]);
 
+  console.log(cards);
   //reset choices and increase turn
   function resetTurn() {
     setChoiceOne(null);
