@@ -57,6 +57,7 @@ function App() {
 
   //start a new game automatically
   useEffect(() => {
+    document.title = 'Memory game';
     shuffleCards();
   }, []);
 
