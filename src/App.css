@@ -33,4 +33,21 @@ button:hover {
   border: 2px solid whitesmoke;
   border-radius: 6px;
   padding: 6px;
+  background-color: #4b88a2;
+}
+
+/* front of card- the picture */
+
+.card .front {
+  position: absolute;
+  transform: rotateY(90deg);
+  background-color: #457b9d;
+}
+
+.flipped .front {
+  transform: rotateY(0deg);
+}
+
+.card .back {
+  background-color: #1d3557;
 }
