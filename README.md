@@ -30,7 +30,7 @@ The project is configured to deploy on [Vercel](https://www.vercel.com/). The `d
 
 ## Live Demo
 
-Check out the live demo of CV builder [here]().
+Check out the live demo of CV builder [here](https://memory-game-psi-five.vercel.app/).
 
 ## Technologies Used
 
