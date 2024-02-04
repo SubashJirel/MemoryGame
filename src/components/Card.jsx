@@ -1,4 +1,4 @@
-function Card({ card, handleChoice, flipped }) {
+function Card({ card, handleChoice, flipped, disabled }) {
   return (
     <div className="card">
       <div className={flipped ? 'flipped' : ''}>
@@ -6,7 +6,11 @@ function Card({ card, handleChoice, flipped }) {
         <img
           src="/img/cover.png"
           className="back"
-          onClick={() => handleChoice(card)}
+          onClick={() => {
+            if (!disabled) {
+              handleChoice(card);
+            }
+          }}
           alt="card back"
         />
       </div>

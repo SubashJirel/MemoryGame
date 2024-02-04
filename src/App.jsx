@@ -16,6 +16,7 @@ function App() {
   const [turns, setTurns] = useState(0);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
+  const [disabled, setDisabled] = useState(false);
 
   function shuffleCards() {
     const twelveImagesArray = [...weatherImages, ...weatherImages]
@@ -31,9 +32,9 @@ function App() {
   //compare two selected cards
   useEffect(() => {
     if (choiceOne && choiceTwo) {
-      console.log('use effect is run');
+      setDisabled(true);
+
       if (choiceOne.src == choiceTwo.src) {
-        console.log('two cards match');
         setCards((prev) => {
           return prev.map((card) => {
             if (card.src == choiceOne.src) {
@@ -47,7 +48,6 @@ function App() {
 
         resetTurn();
       } else {
-        console.log('No match');
         setTimeout(resetTurn, 1000);
       }
     }
@@ -59,6 +59,7 @@ function App() {
     setChoiceOne(null);
     setChoiceTwo(null);
     setTurns((prev) => prev + 1);
+    setDisabled(false);
   }
   return (
     <>
@@ -71,6 +72,7 @@ function App() {
             key={card.id}
             handleChoice={handleChoice}
             flipped={card === choiceOne || card === choiceTwo || card.matched}
+            disabled={disabled}
           />
         ))}
       </div>
